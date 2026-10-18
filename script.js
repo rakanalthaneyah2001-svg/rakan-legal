@@ -266,3 +266,36 @@ const additionalSystemsGrid = $('#additional-systems-grid');
 fetch('/api/additional-systems').then((response) => response.json()).then(({ systems }) => {
   additionalSystemsGrid.innerHTML = systems.map((system, index) => `<article class="additional-system-card"><div class="law-meta"><span>${escapeHTML(system.category)}</span><b>${String(index + 13).padStart(2, '0')}</b></div><h3>${escapeHTML(system.name)}</h3><p>${escapeHTML(system.summary)}</p><div class="law-foot"><span>هيئة الخبراء · بحث رسمي</span><a class="official-link" href="${escapeHTML(system.url)}" target="_blank" rel="noreferrer">فتح النظام الرسمي ↗</a></div></article>`).join('');
 }).catch(() => { additionalSystemsGrid.innerHTML = '<div class="precedent-loading">تعذر تحميل الحزمة. استخدم فهرس هيئة الخبراء الرسمي.</div>'; });
+
+// Office workspace mode: a safe demo shell inspired by the supplied office-management flow.
+const officeAuth = $('#office-auth');
+const officeWorkspace = $('#office-workspace');
+const enterOffice = () => {
+  officeAuth?.setAttribute('hidden', '');
+  if (officeWorkspace) officeWorkspace.hidden = false;
+  document.body.classList.add('office-entered');
+  officeWorkspace?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  toast('مرحبًا بك في مساحة مكتب راكان التجريبية.');
+};
+$('#office-demo')?.addEventListener('click', enterOffice);
+$('#office-login-form')?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  enterOffice();
+});
+$('#office-logout')?.addEventListener('click', () => {
+  officeWorkspace.hidden = true;
+  officeAuth?.removeAttribute('hidden');
+  document.body.classList.remove('office-entered');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  toast('تم تسجيل الخروج من النسخة التجريبية.');
+});
+$$('.office-nav-item').forEach((item) => item.addEventListener('click', () => {
+  $$('.office-nav-item').forEach((navItem) => navItem.classList.remove('active'));
+  item.classList.add('active');
+  const labels = { dashboard: 'صباح الخير، راكان', cases: 'القضايا والملفات', clients: 'الموكلون والأطراف', sessions: 'الجلسات والمواعيد', tasks: 'المهام المفتوحة', library: 'مكتبة الأنظمة', reports: 'التقارير' };
+  const title = $('#office-view-title');
+  if (title) title.textContent = labels[item.dataset.officeView] || 'مساحة مكتب راكان';
+  if (item.dataset.officeView !== 'dashboard') toast(`قسم «${labels[item.dataset.officeView]}» جاهز للربط بقاعدة بيانات المكتب.`);
+}));
+$$('[data-office-view]').filter((item) => item.tagName === 'BUTTON' && !item.classList.contains('office-nav-item')).forEach((item) => item.addEventListener('click', () => toast('هذه نسخة عرضية؛ سيتم فتح القسم عند ربط قاعدة البيانات.')));
+$$('[data-office-action]').forEach((item) => item.addEventListener('click', () => toast('تم فتح نموذج العرض. يمكن ربط الحفظ الفعلي بقاعدة البيانات لاحقًا.')));

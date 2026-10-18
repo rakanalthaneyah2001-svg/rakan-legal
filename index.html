@@ -9,6 +9,21 @@
   <link rel="stylesheet" href="styles.css?v=contrast-1" />
 </head>
 <body>
+  <section id="office-auth" class="office-auth" aria-labelledby="office-auth-title">
+    <div class="auth-card">
+      <div class="auth-brand"><span class="auth-mark">ر</span><div><strong>راكان</strong><small>إدارة المكتب القانوني</small></div></div>
+      <span class="section-kicker">مساحة عمل عربية للمحامي</span>
+      <h1 id="office-auth-title">إدارة مكتبك<br /><span>بوضوح أكبر.</span></h1>
+      <p>تابع القضايا والموكلين والجلسات والمستندات من مساحة واحدة، مع أدوات البحث والتحليل القانوني.</p>
+      <form id="office-login-form" class="auth-form">
+        <label>البريد الإلكتروني<input id="office-email" type="email" placeholder="name@example.com" required /></label>
+        <label>كلمة المرور<input id="office-password" type="password" placeholder="••••••••" required /></label>
+        <button class="primary-button full" type="submit">تسجيل الدخول <span>←</span></button>
+      </form>
+      <button id="office-demo" class="demo-login-button">🧪 تجربة بدون حساب <small>بيانات تجريبية لا تحفظ شيئًا</small></button>
+      <p class="auth-disclaimer">الوضع التجريبي لا يصل إلى بياناتك الحقيقية ولا يحفظ معلوماتك.</p>
+    </div>
+  </section>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="#top" aria-label="راكان - الصفحة الرئيسية">
@@ -30,6 +45,32 @@
     </header>
 
     <main id="top">
+      <section id="office-workspace" class="office-workspace section-pad" hidden>
+        <div class="office-layout">
+          <aside class="office-sidebar">
+            <div class="office-side-brand"><span class="auth-mark">ر</span><div><strong>راكان</strong><small>مساحة المكتب</small></div></div>
+            <nav class="office-nav" aria-label="قائمة المكتب">
+              <button class="office-nav-item active" data-office-view="dashboard">⌂ <span>الرئيسية</span></button>
+              <button class="office-nav-item" data-office-view="cases">▣ <span>القضايا</span><b>4</b></button>
+              <button class="office-nav-item" data-office-view="clients">♙ <span>الموكلون والأطراف</span></button>
+              <button class="office-nav-item" data-office-view="sessions">◷ <span>الجلسات</span></button>
+              <button class="office-nav-item" data-office-view="tasks">✓ <span>المهام</span><b>3</b></button>
+              <button class="office-nav-item" data-office-view="library">§ <span>مكتبة الأنظمة</span></button>
+              <button class="office-nav-item" data-office-view="reports">▤ <span>التقارير</span></button>
+            </nav>
+            <div class="office-side-foot"><span>نسخة تجريبية</span><button id="office-logout">تسجيل الخروج</button></div>
+          </aside>
+          <div class="office-content">
+            <div class="office-topbar"><div><span class="mini-label">الأحد، 18 أكتوبر 2026</span><h2 id="office-view-title">صباح الخير، راكان</h2></div><div class="office-top-actions"><button class="soft-button" data-office-action="add-case">＋ قضية جديدة</button><button class="notification-button">♢</button><span class="office-avatar">ر</span></div></div>
+            <div id="office-dashboard-view" class="office-view-panel">
+              <div class="office-welcome"><div><span class="section-kicker">ملخص المكتب</span><h3>الصورة الكاملة<br /><span>تبدأ من هنا.</span></h3></div><p>هذه لوحة عرضية لعمل مكتبك. أضف قضية أو انتقل إلى محلل الدعوى لبدء قراءة أولية بالمصادر الرسمية.</p><button class="primary-button" data-scroll="#case-intake">حلّل دعوى <span>←</span></button></div>
+              <div class="office-metrics"><div><span>القضايا النشطة</span><strong>12</strong><small>+2 هذا الشهر</small></div><div><span>جلسات قادمة</span><strong>05</strong><small>أقربها غدًا</small></div><div><span>مهام مفتوحة</span><strong>08</strong><small>3 عاجلة</small></div><div><span>مستندات للمراجعة</span><strong>17</strong><small>تحتاج إجراء</small></div></div>
+              <div class="office-columns"><div class="office-panel"><div class="office-panel-head"><div><span class="mini-label">آخر الملفات</span><h3>القضايا المحدثة</h3></div><button class="link-button" data-office-view="cases">عرض الكل ←</button></div><div class="office-case-row"><span class="case-badge blue">تجاري</span><div><b>مطالبة بقيمة عقد توريد</b><small>آخر تحديث منذ ساعتين · ملف #1048</small></div><strong class="case-status active">قيد المتابعة</strong></div><div class="office-case-row"><span class="case-badge gold">مدني</span><div><b>نزاع تنفيذ عقد خدمات</b><small>آخر تحديث أمس · ملف #1043</small></div><strong class="case-status review">مراجعة</strong></div><div class="office-case-row"><span class="case-badge green">عمالي</span><div><b>مطالبة بمستحقات نهاية خدمة</b><small>آخر تحديث منذ 3 أيام · ملف #1039</small></div><strong class="case-status done">مكتمل</strong></div></div><div class="office-panel calendar-panel"><div class="office-panel-head"><div><span class="mini-label">هذا الأسبوع</span><h3>المواعيد القادمة</h3></div><span class="calendar-month">أكتوبر 2026</span></div><div class="calendar-event"><time>19<br /><small>أكتوبر</small></time><div><b>جلسة نظر الدعوى</b><small>المحكمة التجارية · 09:30 صباحًا</small></div></div><div class="calendar-event"><time>21<br /><small>أكتوبر</small></time><div><b>موعد مراجعة مستندات</b><small>مكتب راكان · 01:00 مساءً</small></div></div><div class="calendar-event"><time>24<br /><small>أكتوبر</small></time><div><b>اتصال مع الموكل</b><small>قضية #1039 · 11:00 صباحًا</small></div></div></div></div>
+              <div class="office-quick"><button data-scroll="#case-intake"><span>✦</span><b>تحليل دعوى</b><small>نقاط قوة وضعف ومراجع</small></button><button data-office-action="add-client"><span>♙</span><b>إضافة موكل</b><small>إنشاء ملف طرف جديد</small></button><button data-office-action="add-task"><span>✓</span><b>إضافة مهمة</b><small>تنظيم عمل الفريق</small></button><button data-scroll="#library"><span>§</span><b>فتح المكتبة</b><small>الأنظمة الرسمية السعودية</small></button></div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="hero section-pad">
         <div class="hero-copy">
           <div class="eyebrow"><span class="pulse-dot"></span> مساحة عمل قانونية مصممة للعربية</div>
